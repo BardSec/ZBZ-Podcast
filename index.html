@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zero Breach Zone - Cybersecurity Podcast with Phil Hintz & Andy Lombardo</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Zero Breach Zone is a cybersecurity podcast hosted by Phil Hintz and Andy Lombardo, sponsored by CyberNut. Expert insights on email security, incident response, and K-12 cybersecurity.">
+    <meta name="description" content="Zero Breach Zone is a cybersecurity podcast hosted by Phil Hintz and Andy Lombardo, sponsored by CyberNut. Expert insights on email security, incident response, and K-12 cybersecurity.">
+    <meta name="keywords" content="cybersecurity, podcast, Phil Hintz, Andy Lombardo, CyberNut, email security, incident response, K-12 security">
+    <meta name="author" content="Phil Hintz & Andy Lombardo">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Zero Breach Zone - Cybersecurity Podcast">
+    <meta property="og:description" content="Expert cybersecurity insights from Phil Hintz and Andy Lombardo. Powered by CyberNut.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://zerobreachzone.com">
+    <meta property="og:image" content="https://zerobreachzone.com/og-image.jpg">
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Zero Breach Zone - Cybersecurity Podcast">
+    <meta name="twitter:description" content="Expert cybersecurity insights from Phil Hintz and Andy Lombardo. Powered by CyberNut.">
+    <meta name="twitter:image" content="https://zerobreachzone.com/twitter-image.jpg">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #1455C3;
+            --accent: #2666D3;
+            --bright: #4A88F5;
+            --light: #9DBDF0;
+            --surface: #ECEFEF;
+            --deep: #0B46AE;
+            --text-dark: #1a1a1a;
+            --text-light: #4a4a4a;
+            --white: #ffffff;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--white);
+        }
+        
+        /* Navigation */
+        .nav {
+            position: sticky;
+            top: 0;
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .nav-logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 0;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a:focus {
+            color: var(--primary);
+            outline: 2px solid var(--primary);
+            outline-offset: 4px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            position: relative;
+            background: linear-gradient(135deg, var(--deep) 0%, var(--primary) 50%, var(--accent) 100%);
+            color: var(--white);
+            padding: 5rem 1.5rem 4rem;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150%;
+            height: 150%;
+            background: repeating-conic-gradient(
+                from 0deg at 50% 50%,
+                rgba(255, 255, 255, 0.03) 0deg,
+                transparent 2deg,
+                transparent 8deg,
+                rgba(255, 255, 255, 0.03) 10deg
+            );
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1.25rem, 4vw, 1.75rem);
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+            opacity: 0.95;
+        }
+        
+        .hero-sponsor {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            margin: 1.5rem 0 2.5rem;
+            font-size: 1.125rem;
+            opacity: 0.9;
+        }
+        
+        .sponsor-logo {
+            width: 40px;
+            height: 40px;
+            background: var(--white);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1rem;
+        }
+        
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+        
+        .hero-platforms {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .platform-text {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            margin-right: 0.5rem;
+        }
+        
+        .platform-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 6px;
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .platform-link:hover,
+        .platform-link:focus {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+            outline: 2px solid var(--white);
+            outline-offset: 2px;
+        }
+        
+        .platform-icon {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.875rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background: var(--white);
+            color: var(--primary);
+        }
+        
+        .btn-primary:hover,
+        .btn-primary:focus {
+            background: var(--surface);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            outline: 2px solid var(--white);
+            outline-offset: 2px;
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border-color: var(--white);
+        }
+        
+        .btn-secondary:hover,
+        .btn-secondary:focus {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            outline: 2px solid var(--white);
+            outline-offset: 2px;
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        /* Sections */
+        section {
+            padding: 4rem 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-header h2 {
+            font-size: clamp(2rem, 5vw, 2.75rem);
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+        }
+        
+        .section-header p {
+            color: var(--text-light);
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .season-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        /* Search/Filter */
+        .search-container {
+            max-width: 500px;
+            margin: 0 auto 2.5rem;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 0.875rem 1.25rem;
+            border: 2px solid var(--light);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(20, 85, 195, 0.1);
+        }
+        
+        /* Grid */
+        .grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        }
+        
+        /* Cards */
+        .card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(20, 85, 195, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(20, 85, 195, 0.15);
+        }
+        
+        .card-thumbnail {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .card-content {
+            padding: 1.75rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
+        }
+        
+        .card-meta {
+            color: var(--text-light);
+            font-size: 0.875rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .card-description {
+            color: var(--text-light);
+            margin-bottom: 1.25rem;
+            flex-grow: 1;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        
+        .card-footer {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+            margin-top: auto;
+        }
+        
+        .btn-small {
+            padding: 0.5rem 1.25rem;
+            font-size: 0.9rem;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .btn-small:hover,
+        .btn-small:focus {
+            background: var(--deep);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(20, 85, 195, 0.3);
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+        
+        /* Resources */
+        .resource-card {
+            padding: 1.75rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .resource-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary), var(--bright));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+        
+        .resource-content {
+            flex: 1;
+        }
+        
+        .resource-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: var(--surface);
+            color: var(--primary);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .resource-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+        
+        .resource-description {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+        
+        /* Presentations */
+        .presentation-card {
+            padding: 1.75rem;
+        }
+        
+        .presentation-venue {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        
+        .presentation-links {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--deep);
+            color: var(--white);
+            padding: 3rem 0 2rem;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            text-align: center;
+        }
+        
+        .footer-sponsor {
+            font-size: 1.125rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover,
+        .social-icon:focus {
+            background: var(--white);
+            color: var(--primary);
+            transform: translateY(-3px);
+            outline: 2px solid var(--white);
+            outline-offset: 2px;
+        }
+        
+        .footer-copyright {
+            opacity: 0.7;
+            font-size: 0.9rem;
+            margin-top: 1.5rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .nav-container {
+                justify-content: center;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero {
+                padding: 3rem 1.5rem 2.5rem;
+            }
+            
+            section {
+                padding: 3rem 0;
+            }
+            
+            .hero-platforms {
+                flex-direction: column;
+            }
+            
+            .platform-text {
+                margin-right: 0;
+                margin-bottom: 0.5rem;
+            }
+        }
+        
+        /* Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+        
+        :focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 4px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="#" class="nav-logo" aria-label="Zero Breach Zone Home">Zero Breach Zone</a>
+            <ul class="nav-links">
+                <li><a href="#episodes">Episodes</a></li>
+                <li><a href="#resources">Resources</a></li>
+            
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Zero Breach Zone</h1>
+            <p class="hero-subtitle">With Phil Hintz & Andy Lombardo</p>
+            <div class="hero-sponsor">
+                <span class="sponsor-logo" aria-hidden="true"><img src="assets/cybernut_logo.jpeg" width=100% alt=""/><a href="https://www.cybernut.com">&nbsp;</a></span> 
+				
+                <span>Powered by CyberNut</span>
+            </div>
+            <div class="hero-cta">
+                <a href="https://www.youtube.com/@zerobreachzone" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+                <a href="https://www.youtube.com/@zerobreachzone?sub_confirmation=1" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Subscribe</a>
+            </div>
+            <div class="hero-platforms">
+                <span class="platform-text">Listen on:</span>
+                <a href="https://open.spotify.com/show/1roj2sVP57PDZ95xoq84Jm" class="platform-link" target="_blank" rel="noopener noreferrer">
+                    <svg class="platform-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                    </svg>
+                    Spotify
+                </a>
+                <a href="https://podcasts.apple.com/us/podcast/zero-breach-zone/id1770486213?uo=4" class="platform-link" target="_blank" rel="noopener noreferrer">
+                    <svg class="platform-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2.182c5.423 0 9.818 4.395 9.818 9.818 0 5.423-4.395 9.818-9.818 9.818-5.423 0-9.818-4.395-9.818-9.818 0-5.423 4.395-9.818 9.818-9.818zM12 5.09c-2.067 0-3.75 1.683-3.75 3.75 0 1.093.47 2.076 1.219 2.766-.696 1.095-1.094 2.39-1.094 3.778 0 .345.28.625.625.625s.625-.28.625-.625c0-2.413 1.962-4.375 4.375-4.375s4.375 1.962 4.375 4.375c0 .345.28.625.625.625s.625-.28.625-.625c0-1.388-.398-2.683-1.094-3.778.749-.69 1.219-1.673 1.219-2.766 0-2.067-1.683-3.75-3.75-3.75zm0 1.25c1.379 0 2.5 1.121 2.5 2.5s-1.121 2.5-2.5 2.5-2.5-1.121-2.5-2.5 1.121-2.5 2.5-2.5zm0 7.5c-.69 0-1.25.56-1.25 1.25v3.125c0 .69.56 1.25 1.25 1.25s1.25-.56 1.25-1.25v-3.125c0-.69-.56-1.25-1.25-1.25z"/>
+                    </svg>
+                    Apple Podcasts
+                </a>
+                <a href="https://zerobreachzone.transistor.fm/" class="platform-link" target="_blank" rel="noopener noreferrer">
+                    <svg class="platform-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                    Transistor
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Episodes Section -->
+    <section id="episodes">
+        <div class="container">
+            <div class="section-header">
+                <span class="season-badge">Season 1</span>
+                <h2>Episodes</h2>
+                <p>Deep dives into cybersecurity challenges, solutions, and industry insights for K-12 education</p>
+            </div>
+            
+            <div class="search-container">
+                <input 
+                    type="search" 
+                    id="episode-search" 
+                    class="search-input" 
+                    placeholder="Search episodes..."
+                    aria-label="Search episodes"
+                >
+            </div>
+            
+            <div class="grid" id="episodes-grid" role="list">
+                <!-- Episodes will be rendered here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources" style="background: var(--surface);">
+        <div class="container">
+            <div class="section-header">
+                <h2>Tools & Resources</h2>
+                <p>Essential tools and resources we discuss on the podcast</p>
+            </div>
+            
+            <div class="grid" id="resources-grid" role="list">
+                <!-- Resources will be rendered here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+   
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p class="footer-sponsor">Proudly sponsored by <strong>CyberNut</strong></p>
+            
+            <div class="footer-social" role="navigation" aria-label="Social media links">
+                <a href="https://www.youtube.com/@zerobreachzone" class="social-icon" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                </a>
+                <a href="https://twitter.com/zerobreachzone" class="social-icon" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </a>
+                <a href="https://linkedin.com/company/zerobreachzone" class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                </a>
+            </div>
+            
+            <p class="footer-copyright">
+                &copy; 2026 Zero Breach Zone. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Extract YouTube video ID from URL
+        function getYouTubeVideoId(url) {
+            const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+            const match = url.match(regExp);
+            return (match && match[7].length === 11) ? match[7] : null;
+        }
+        
+        // Get YouTube thumbnail URL with fallback
+        function getYouTubeThumbnail(videoId, quality = 'maxresdefault') {
+            return `https://img.youtube.com/vi/${videoId}/${quality}.jpg`;
+        }
+
+        // Data - Season 1 Episodes
+        const episodes = [
+            {
+                title: "Meet the Hosts – Why Cybersecurity Matters in K-12 Education",
+                description: "Hosts Andy and Phil introduce the podcast and discuss why cybersecurity is a critical, high-stakes issue for K-12 schools. They share personal experiences with cyberattacks and outline their mission to empower educators with actionable tools.",
+                youtubeUrl: "https://youtu.be/8Y3LKfgEf9I",
+                videoId: "8Y3LKfgEf9I",
+                episode: 1
+            },
+            {
+                title: "AI, Cybersecurity, and EdTech Innovation: Transformative Insights from ISTE 2024",
+                description: "Phil recounts key highlights from the ISTE 2024 conference, focusing on new digital citizenship standards and the explosion of AI in educational technology. The hosts also discuss the challenges of vetting edtech apps for security and data privacy.",
+                youtubeUrl: "https://youtu.be/S_bSDsakZ5E",
+                videoId: "S_bSDsakZ5E",
+                episode: 2
+            },
+            {
+                title: "From AT&T to K12: No Organization is Too Big (or Too Small) to Skip Security",
+                description: "Using the major AT&T data breach as a backdrop, the hosts emphasize that every organization is a target and must prioritize basic security measures like MFA. They also explore professional development resources for IT leaders, such as CoSN and the early CTO Academy.",
+                youtubeUrl: "https://youtu.be/_uYNZDYCcos",
+                videoId: "_uYNZDYCcos",
+                episode: 3
+            },
+            {
+                title: "The Entrepreneur's Learning Curve with Oliver Page",
+                description: "Guest Oliver Page shares his journey from a high school student designing iPad cases to founding CyberNut, a cybersecurity training platform built specifically for schools. The conversation focuses on the importance of learning from failure and innovating based on the unique needs of the education sector.",
+                youtubeUrl: "https://youtu.be/Zhr30seaLbM",
+                videoId: "Zhr30seaLbM",
+                episode: 4
+            },
+            {
+                title: "Conference Banter & the AI Factor",
+                description: "Andy and Phil reflect on their first in-person meeting at the RTM conference and discuss the potential of AI tools like NotebookLM and weapons recognition systems. They share tips on maintaining security hygiene while navigating the busy conference and holiday seasons.",
+                youtubeUrl: "https://youtu.be/zGigbeKBq6o",
+                videoId: "zGigbeKBq6o",
+                episode: 5
+            },
+            {
+                title: "Tech Tales & Security Talks: A Rural School Adventure with Jason Yaw Osei",
+                description: "Jason Yaw Osei joins the show to discuss the unique challenges and rewards of managing technology and cybersecurity in a small rural school district. The episode covers the transition from student-athlete to IT leader and the impact of gamified security training for staff.",
+                youtubeUrl: "https://youtu.be/Ps4Cs6wTCTU",
+                videoId: "Ps4Cs6wTCTU",
+                episode: 6
+            },
+            {
+                title: "From NASA to K-12: Revolutionizing School Cybersecurity with Frankie Jackson",
+                description: "Join hosts Phil Hintz and Andy Lombardo as they sit down with Frankie Jackson, a cybersecurity expert and former CTO of Cypress Fairbanks ISD, to explore the intersection of education and cybersecurity. From NASA to one of Texas's largest school districts, Frankie shares her journey and insights on developing comprehensive cybersecurity frameworks for educational institutions.",
+                youtubeUrl: "https://youtu.be/laFAHrdHkDs",
+                videoId: "laFAHrdHkDs",
+                episode: 7
+            },
+            {
+                title: "K-12's Data Security Challenge: Inside the PowerSchool Breach",
+                description: "In this packed episode, Phil and Andy explore the critical importance of administrative rights management and layered security approaches in modern cybersecurity practices. They tackle the recent PowerSchool data breach, offering valuable insights into incident response and the crucial role of vendor accountability in protecting sensitive student data.",
+                youtubeUrl: "https://youtu.be/Gj1vEYhvJGE",
+                videoId: "Gj1vEYhvJGE",
+                episode: 8
+            },
+            {
+                title: "Policy, Passion & Purpose: Tales from EdTech Trailblazer Dr. Sheryl Abshir",
+                description: "Hosts Andy & Phil kick off our conference coverage with master storyteller Dr. Sheryl R. Abshire, a 40+ year education technology pioneer whose deep understanding of policy and government has shaped educational technology across the nation.",
+                youtubeUrl: "https://youtu.be/CzKwFxZntlA",
+                videoId: "CzKwFxZntlA",
+                episode: 9
+            },
+            {
+                title: "When Disruption Disrupts Itself: Dr. Joe Phillips - AI, Safety, & Accelerating EdTech",
+                description: "Join us for our continued FETC 2025 coverage featuring Dr. Joe Phillips, CTO of Fulton County Schools. In this insightful conversation recorded live at the conference, Dr. Phillips draws from his unique background in both education and military service to address the complex challenges facing large school districts.",
+                youtubeUrl: "https://youtu.be/gcaRe2rrzGE",
+                videoId: "gcaRe2rrzGE",
+                episode: 10
+            },
+            {
+                title: "From Crisis to Innovation: Lessons in Educational Cybersecurity with Scott Bailey",
+                description: "Join us for an enlightening conversation with  Scott Bailey, former superintendent and educational innovator from Desert Sands School District. Through his engaging storytelling, Bailey shares candid experiences from his work across Nevada's largest school districts, including Clark County School District with 314,000 students and Washoe County School District serving the Reno-Tahoe area.",
+                youtubeUrl: "https://youtu.be/oG4ZtXxcKN4",
+                videoId: "oG4ZtXxcKN4",
+                episode: 11
+            },
+            {
+                title: "Energizing EdTech with Michelle Krieger: A Dynamic Conversation on School Cybersecurity",
+                description: "oin hosts Phil Hintz and Andy Lombardo as they sit down with Michelle Krieger to explore topics top of mind at the intersection of education and cybersecurity recorded at FETC. In this energetic conversation, Michelle shares her unique journey from Special Education Teacher to Education Innovation to Data Protection Officer, to Director of Technology.",
+                youtubeUrl: "https://youtu.be/ViH9O8_s8w4",
+                videoId: "ViH9O8_s8w4",
+                episode: 12
+            },
+            {
+                title: "FETC Insights: The Intersection of Research and Practice",
+                description: "Phil shares insights from the FETC conference, focusing on his research into the impact of AR and VR in the classroom. The discussion highlights how emerging technologies can be implemented safely without compromising student security.",
+                youtubeUrl: "https://youtu.be/p0Vy_k5pVD8",
+                videoId: "p0Vy_k5pVD8",
+                episode: 13
+            },
+            {
+                title: "Building Strong EdTech Partners & Creating Cybersecurity Culture in Schools w/ Jeff McCoy",
+                description: "In this episode hosts Phil Hintz and Andy Lombardo speak with Jeff McCoy, Associate Superintendent for Academics in Greenville County, South Carolina. Drawing from his 25+ years in education, Jeff discusses the integration of technology in schools, emphasizing the distinction between vendors and solution partners.",
+                youtubeUrl: "https://youtu.be/GIEE5jNOZoQ",
+                videoId: "GIEE5jNOZoQ",
+                episode: 14
+            },
+            {
+                title: "Knowing Is Half the Battle... The Other Half Is Implementation",
+                description: "Andy and Phil discuss the critical step of turning security knowledge into actionable policies that staff can follow. They emphasize that security tools are only effective if they are implemented with fidelity and clear ownership.",
+                youtubeUrl: "https://youtu.be/wdI4NY4WCLY",
+                videoId: "wdI4NY4WCLY",
+                episode: 15
+            },
+            {
+                title: "Riding the AI Wave in Education & Adapting the Right Mindset with Dr. Adam Phyall",
+                description: "In this episode, hosts Phil Hintz and Andy Lombardo are joined by Dr. Adam Phyall, Director of Professional Learning and Leadership at All4Ed and a board member of ISTE.",
+                youtubeUrl: "https://www.youtube.com/watch?v=0k-Nal-W7Fw",
+                videoId: "0k-Nal-W7Fw",
+                episode: 16
+            },
+            {
+                title: "FETC, VR & Cybersecurity: What's Next for K–12 Tech? with Jennifer Womble",
+                description: "In this episode hosts Phil Hintz and Andy Lombardo are joined by Jennifer Womble, a trailblazer in the EdTech community and the visionary Program Chair of the Future of Education Technology Conference (FETC).",
+                youtubeUrl: "https://youtu.be/lC0DAFMLWic",
+                videoId: "lC0DAFMLWic",
+                episode: 17
+            },
+            {
+                title: "The Cybersecurity Mindset in K–12: Insights from Maurice Payne",
+                description: "Hosts Phil Hintz and Andy Lombardo sit down with Maurice Payne, Director of IT for Decatur Public Schools, to talk about his journey from corporate America to K–12 EdTech.",
+                youtubeUrl: "https://youtu.be/m3v16VniMA8",
+                videoId: "m3v16VniMA8",
+                episode: 18
+            },
+            {
+                title: "E-Rate's Future and Cybersecurity Funding for Schools with Mindy Fiscus",
+                description: "Welcome to episode 20 of Zero Breach Zone! Hosts Andy Lombardo and Phil Hintz sit down with Mindy Fiscus, a 25+ year veteran in the world of education technology and the Director of Government Affairs & E-Rate at the Learning Technology Center of Illinois. Mindy brings a wealth of experience and passion to the conversation, sharing her journey through the evolving EdTech landscape and the pivotal role that E-Rate has played in connecting classrooms across the country.",
+                youtubeUrl: "https://youtu.be/oa1e-Hj5AH8",
+                videoId: "oa1e-Hj5AH8",
+                episode: 19
+            },
+            {
+                title: "Duane Shaffer: Strengthening K–12 Cyber Through Documentation, Community & the TLE Seal",
+                description: "In this episode, hosts Andy & Phil  interview Duane Shaffer, the director of technology services at the Learning Technology Center of Illinois. They discuss the importance of cybersecurity and data privacy in K-12 education, the vision behind the IT summit, and the role of documentation in enhancing cybersecurity practices.",
+                youtubeUrl: "https://youtu.be/4vhmWSS_kaQ",
+                videoId: "4vhmWSS_kaQ",
+                episode: 20
+            },
+            {
+                title: "Building a Culture of Cybersecurity w/ Itza White, Five Star Director of Cybersecurity",
+                description: "Thosts Andy Lombardo and Phil Hintz welcome Itza White, the Director of Cybersecurity for Five Star. The group discusses the unique challenges of cybersecurity in K-12 education, the importance of documentation, and building a culture of security awareness. Itza shares her journey into cybersecurity, two big challenges schools face including the rising significance of cyber insurance, and the need for effective incident response plans.",
+                youtubeUrl: "https://youtu.be/VQ2955WtMBA",
+                videoId: "VQ2955WtMBA",
+                episode: 21
+            }
+        ];
+
+        const resources = [
+            {
+                name: "Have I Been Pwned",
+                description: "Check if your email has been compromised in a data breach.",
+                category: "Email Security",
+                url: "https://haveibeenpwned.com",
+                icon: "HI"
+            },
+			{
+        name: "Any.Run",
+        description: "Check out hinky files and URLs in a dynamic sandbox.",
+        category: "Triage",
+        url: "https://any.run",
+        icon: "AR"
+    },
+{
+        name: "EML Analyzer",
+        description: "Automatically analyze any EML to quickly investigate suspicious or user reported emails.",
+        category: "Email Security",
+        url: "https://analyzer.sublime.security/",
+        icon: "EA"
+    },
+            {
+                name: "MXToolbox",
+                description: "Comprehensive DNS and email deliverability testing suite.",
+                category: "Email Security",
+                url: "https://mxtoolbox.com",
+                icon: "MX"
+            },
+            {
+                name: "CISA Known Exploited Vulnerabilities",
+                description: "Authoritative source for actively exploited vulnerabilities requiring immediate action.",
+                category: "Incident Response",
+                url: "https://www.cisa.gov/known-exploited-vulnerabilities",
+                icon: "CI"
+            },
+            {
+                name: "MITRE ATT&CK Framework",
+                description: "Knowledge base of adversary tactics and techniques based on real-world observations.",
+                category: "Incident Response",
+                url: "https://attack.mitre.org",
+                icon: "MT"
+            },
+            {
+                name: "CoSN K-12 Cybersecurity Framework",
+                description: "Comprehensive framework for K-12 cybersecurity program development.",
+                category: "K-12 Policy",
+                url: "https://www.cosn.org/cybersecurity",
+                icon: "CS"
+            },
+            {
+                name: "Student Data Privacy Consortium",
+                description: "Resources and guidance for protecting student data privacy.",
+                category: "K-12 Policy",
+                url: "https://privacy.a4l.org",
+                icon: "SD"
+            },
+            {
+                name: "Shodan",
+                description: "Search engine for Internet-connected devices and exposed services.",
+                category: "Reconnaissance",
+                url: "https://www.shodan.io",
+                icon: "SH"
+            },
+            {
+                name: "VirusTotal",
+                description: "Analyze suspicious files and URLs to detect malware and threats.",
+                category: "Threat Intelligence",
+                url: "https://www.virustotal.com",
+                icon: "VT"
+            }
+        ];
+
+        const presentations = [
+            {
+                title: "Building a Security Operations Center on a Budget",
+                venue: "K-12 Security Summit 2025",
+                year: "2025",
+                slidesUrl: "https://example.com/slides/soc-budget",
+                recordingUrl: "https://example.com/recording/soc-budget"
+            },
+            {
+                title: "Email Authentication: A Practical Workshop",
+                venue: "CoSN Annual Conference",
+                year: "2025",
+                slidesUrl: "https://example.com/slides/email-auth",
+                recordingUrl: null
+            },
+            {
+                title: "Incident Response War Stories from the Trenches",
+                venue: "InfoSec World",
+                year: "2024",
+                slidesUrl: "https://example.com/slides/ir-stories",
+                recordingUrl: "https://example.com/recording/ir-stories"
+            },
+            {
+                title: "Zero Trust for K-12: A Roadmap",
+                venue: "ISTE Conference",
+                year: "2024",
+                slidesUrl: "https://example.com/slides/zero-trust-k12",
+                recordingUrl: "https://example.com/recording/zero-trust-k12"
+            }
+        ];
+
+        // Render functions
+        function renderEpisodes(episodesToRender = episodes) {
+            const grid = document.getElementById('episodes-grid');
+            grid.innerHTML = episodesToRender.map(episode => `
+                <article class="card" role="listitem">
+                    <img 
+                        src="${getYouTubeThumbnail(episode.videoId, 'maxresdefault')}" 
+                        alt="Episode ${episode.episode} thumbnail"
+                        class="card-thumbnail"
+                        loading="lazy"
+                        onerror="this.onerror=null; this.src='${getYouTubeThumbnail(episode.videoId, 'hqdefault')}';"
+                    >
+                    <div class="card-content">
+                        <h3 class="card-title">${episode.title}</h3>
+                        <p class="card-meta">Episode ${episode.episode}</p>
+                        <p class="card-description">${episode.description}</p>
+                        <div class="card-footer">
+                            <a href="${episode.youtubeUrl}" class="btn-small" target="_blank" rel="noopener noreferrer">Watch Episode</a>
+                        </div>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        function renderResources() {
+            const grid = document.getElementById('resources-grid');
+            grid.innerHTML = resources.map(resource => `
+                <article class="card resource-card" role="listitem">
+                    <div class="resource-icon" aria-hidden="true">${resource.icon}</div>
+                    <div class="resource-content">
+                        <span class="resource-tag">${resource.category}</span>
+                        <h3 class="resource-title">${resource.name}</h3>
+                        <p class="resource-description">${resource.description}</p>
+                        <a href="${resource.url}" class="btn-small" target="_blank" rel="noopener noreferrer">Visit Resource</a>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        function renderPresentations() {
+            const grid = document.getElementById('presentations-grid');
+            grid.innerHTML = presentations.map(pres => `
+                <article class="card presentation-card" role="listitem">
+                    <p class="presentation-venue">${pres.venue}</p>
+                    <h3 class="card-title">${pres.title}</h3>
+                    <p class="card-meta">${pres.year}</p>
+                    <div class="presentation-links">
+                        <a href="${pres.slidesUrl}" class="btn-small" target="_blank" rel="noopener noreferrer">View Slides</a>
+                        ${pres.recordingUrl ? `<a href="${pres.recordingUrl}" class="btn-small" target="_blank" rel="noopener noreferrer">Watch Recording</a>` : ''}
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        // Search functionality
+        function setupSearch() {
+            const searchInput = document.getElementById('episode-search');
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase().trim();
+                
+                if (query === '') {
+                    renderEpisodes();
+                    return;
+                }
+                
+                const filtered = episodes.filter(episode => 
+                    episode.title.toLowerCase().includes(query) ||
+                    episode.description.toLowerCase().includes(query) ||
+                    episode.episode.toString().includes(query)
+                );
+                
+                renderEpisodes(filtered);
+            });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            renderEpisodes();
+            renderResources();
+            renderPresentations();
+            setupSearch();
+        });
+    </script>
+</body>
+</html>
