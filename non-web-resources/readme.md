@@ -1,1 +1,1 @@
-This folder is for misc. episdoes tracking info independent of the website. 
+This folder is for misc. episodes tracking info
